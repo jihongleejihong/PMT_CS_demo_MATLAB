@@ -3,12 +3,12 @@
 
 1. PMT_CS_main.m
 
-  -- main file for running experiment.
+ * main file for running experiment.
   
 2. local/PMT_CS_Workspace.m
 
-  -- workspace file for global parameters
+ * workspace file for global parameters
    
 3. local/PMT_CS_Trial.m
 
-  -- a program file to be iterated for each trial
+ * a program file to be iterated for each trial
