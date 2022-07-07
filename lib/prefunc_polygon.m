@@ -1,0 +1,19 @@
+function voidmap = prefunc_polygon(voidmap, params)
+%PREFUNC_POLYGON Adds margins around occupied area for placing a polygon.
+%
+%   See also RANDOM_COORDS, DEMO_RANDOMCOORDS_POLYGONS.
+
+	[radius, sides, tilt] = pretina_params(params, [], 1, 0);
+
+	kernel_polygon = mk_shape( ...
+		map_polygonal( ...
+			ceil(radius / cosd(180 / sides) * 2), ...
+			[], sides, tilt ...
+			), ...
+		radius ...
+		);
+	bumpmap = ones(size(voidmap) + 2);
+	bumpmap(2:(end - 1), 2:(end - 1)) = 1 - voidmap;
+	bumpmap = min(1, filter2(kernel_polygon, bumpmap, 'same'));
+	voidmap = 1 - bumpmap(2:(end - 1), 2:(end - 1));
+end
